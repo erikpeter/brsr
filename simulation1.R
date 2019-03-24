@@ -35,4 +35,37 @@ simulate.power <- function(n.sim = 1e5, true.sd = 1, true.delta = 0.5) {
   return(power)
 }
 
-print(simulate.power(n.sim = 100))
+# simulate a series of scenarios
+
+global.nsim <- 1e5
+
+# Null Hypothesis
+
+power.null <- simulate.power(n.sim = global.nsim, true.delta = 0)
+
+# As estimated
+
+power.h1 <- simulate.power(n.sim = global.nsim)
+
+# Overstimate SD 10%, 20%, 50%
+
+power.sdm10 <- simulate.power(n.sim = global.nsim, true.sd = 0.9)
+power.sdm20 <- simulate.power(n.sim = global.nsim, true.sd = 0.8)
+power.sdm50 <- simulate.power(n.sim = global.nsim, true.sd = 0.5)
+
+# Underestimate SD 20%, 50% and 100%
+
+power.sdp10 <- simulate.power(n.sim = global.nsim, true.sd = 1.1)
+power.sdp20 <- simulate.power(n.sim = global.nsim, true.sd = 1.2)
+power.sdp50 <- simulate.power(n.sim = global.nsim, true.sd = 1.5)
+power.sdp100 <- simulate.power(n.sim = global.nsim, true.sd = 2.0)
+
+# Understimate true delta
+
+power.deltap10 <- simulate.power(n.sim = global.nsim, true.delta = 0.55)
+power.deltap20 <- simulate.power(n.sim = global.nsim, true.delta = 0.6)
+power.deltap50 <- simulate.power(n.sim = global.nsim, true.delta = 0.75)
+power.deltap100 <- simulate.power(n.sim = global.nsim, true.delta = 1.0)
+
+
+
