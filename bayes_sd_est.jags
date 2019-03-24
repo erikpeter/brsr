@@ -1,0 +1,12 @@
+model {
+  for (i in 1:N) {
+    y[i] ~ dnorm( mu[i], tau)
+    mu[i] <- mu0 + mu1 * trt[i]
+    trt[i] ~ dbern(0.5)
+  }
+  
+  tau <- pow(sigma, -2)
+  mu0 ~ dunif(-1000, 1000)
+  mu1 ~ dt(0, 1, 1)T(0, 10000)
+  sigma ~ dunif(0, 100)
+}
